@@ -1,0 +1,30 @@
+﻿@model IEnumerable<InsperClass.Domain.Model.ScheduleViewModel>
+
+@{
+    ViewData["Title"] = "Horários";
+}
+
+<h2>Horários Cadastrados</h2>
+
+<p>
+    <a class="btn btn-primary" asp-action="Create">Adicionar Horário</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Course) - @Html.DisplayFor(modelItem => item.Class) - @Html.DisplayFor(modelItem => item.WeekDay)
+                        @String.Format("{0:HH:mm}", item.StartTime)  às  @String.Format("{0:HH:mm}", item.EndTime)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
