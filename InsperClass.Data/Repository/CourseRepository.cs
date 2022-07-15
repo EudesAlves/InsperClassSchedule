@@ -8,12 +8,10 @@ using System.Data.SqlClient;
 
 namespace InsperClass.Data.Repository
 {
-    public class CourseRepository : ICourseRepository
+    public class CourseRepository : BaseRepository, ICourseRepository
     {
-        string _connString;
-        public CourseRepository(IConfiguration configuration)
+        public CourseRepository(IConfiguration configuration) : base(configuration)
         {
-            _connString = configuration.GetSection("ConnectionStrings").GetSection("InsperDatabase").Value;
         }
         public IEnumerable<Course> Get()
         {

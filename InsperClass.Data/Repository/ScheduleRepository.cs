@@ -9,18 +9,16 @@ using System.Data.SqlClient;
 
 namespace InsperClass.Data.Repository
 {
-    public class ScheduleRepository : IScheduleRepository
+    public class ScheduleRepository : BaseRepository, IScheduleRepository
     {
-        string _connString;
-        public ScheduleRepository(IConfiguration configuration)
+        public ScheduleRepository(IConfiguration configuration) : base(configuration)
         {
-            _connString = configuration.GetSection("ConnectionStrings").GetSection("InsperDatabase").Value;
         }
 
         public IEnumerable<ScheduleViewModel> GetViewModel()
         {
             IEnumerable<ScheduleViewModel> schedules;
-            using (var conn = new SqlConnection(_connString))
+            using (var conn = new SqlConnection(this._connString))
             {
                 try
                 {
