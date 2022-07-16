@@ -19,9 +19,11 @@ a {
 }
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+    color: #fff;
+    /*background-color: #1b6ec2;*/
+    background-color: #f2f2f2;
+    border-color: #1861ac;
+    text-decoration: revert;
 }
 
 /* Sticky footer styles
@@ -75,8 +77,24 @@ tr:nth-child(odd) {
     background-color: #3399ff;
     color: #fff;
 }
-tr:nth-child(even) { background-color: #f2f2f2 }
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+    margin-left: 15px;
+}
 
-nav {
-    
+.nav-container {
+    color: white;
+    text-decoration-color: #ffffff;
+    background-color: #6666ff;
+    border: solid 1px #4d4dff;
+    border-radius: 7px;
+}
+.navbar-new-item {
+    color: white !important;
+    text-decoration-color: #ffffff;
+    margin: 5px;
+    background-color: #9999ff;
+    border: solid 1px #9999ff;
+    border-radius: 7px;
+    padding: 7px;
 }
