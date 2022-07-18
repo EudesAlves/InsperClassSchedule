@@ -1,0 +1,26 @@
+﻿@model InsperClass.Domain.Model.ScheduleViewModel
+
+@{
+    ViewData["Title"] = "Excluir";
+}
+
+<h1>Excluir Horário</h1>
+
+<h3>Deseja Excluir esse horário ?</h3>
+<div>
+    <hr />
+    <dl class="row">
+        
+        <dd class = "col-md-12">
+            @Html.DisplayFor(model => model.Course) - @Html.DisplayFor(model => model.Class) - @Html.DisplayFor(model => model.WeekDay)
+                        @String.Format("{0:HH:mm}", Model.StartTime)  às  @String.Format("{0:HH:mm}", Model.EndTime)
+        </dd>
+        
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Excluir" class="btn btnDelete" />   
+        <a asp-action="Index" class="btn btn-danger">Voltar</a>
+    </form>
+</div>

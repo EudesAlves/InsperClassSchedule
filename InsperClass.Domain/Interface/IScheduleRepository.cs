@@ -8,5 +8,7 @@ namespace InsperClass.Domain.Interface
     {
         IEnumerable<ScheduleViewModel> GetViewModel();
         void Add(Schedule schedule);
+        ScheduleViewModel GetViewModelById(int id);
+        void Delete(int id);
     }
 }

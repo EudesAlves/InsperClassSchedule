@@ -16,9 +16,12 @@
     <tbody>
         @foreach (var item in Model) {
             <tr>
-                <td>
+                <td class="col-md-12">
                     @Html.DisplayFor(modelItem => item.Course) - @Html.DisplayFor(modelItem => item.Class) - @Html.DisplayFor(modelItem => item.WeekDay)
                         @String.Format("{0:HH:mm}", item.StartTime)  às  @String.Format("{0:HH:mm}", item.EndTime)
+                </td>
+                <td class="col-md-2">
+                    @Html.ActionLink("Excluir", "Delete", "Schedule", new { @id = item.Id }, new { @class = "btn btnDelete" })
                 </td>
             </tr>
         }

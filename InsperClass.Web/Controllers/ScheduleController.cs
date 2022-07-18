@@ -61,6 +61,28 @@ namespace InsperClass.Web.Controllers
             }
         }
 
+        // GET: ScheduleController/Delete/id
+        public ActionResult Delete(int id)
+        {
+            var schedule = _scheduleRepository.GetViewModelById(id);
+            return View(schedule);
+        }
+        // POST: ScheduleController/Delete
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(ScheduleViewModel schedule)
+        {
+            try
+            {
+                _scheduleRepository.Delete(schedule.Id);
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
         [HttpGet]
         public IActionResult GetClassesByCourseId(int id)
         {
