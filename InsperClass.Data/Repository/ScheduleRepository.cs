@@ -41,6 +41,37 @@ namespace InsperClass.Data.Repository
                 }
             }
         }
+        public IEnumerable<Schedule> Get()
+        {
+            IEnumerable<Schedule> schedules;
+            using (var conn = new SqlConnection(this._connString))
+            {
+                try
+                {
+                    var sql = @"SELECT s.Id, s.CourseId, s.ClassId, s.WeekDay, s.StartTime, s.EndTime, co.Id, co.Name, cl.Id, cl.Name
+                                FROM Schedule s
+                                INNER JOIN Course co ON co.Id = s.CourseId
+                                INNER JOIN Class cl ON cl.Id = s.ClassId
+                                WHERE s.Active = 1";
+                    schedules = conn.Query<Schedule, Course, Class, Schedule>(sql, (s,co,cl) =>
+                    {
+                        s.Course = co;
+                        s.Class = cl;
+                        return s;
+                    },
+                    splitOn: "Id, Id");
+                    return schedules;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
+        }
         public void Add(Schedule schedule)
         {
             using (var conn = new SqlConnection(_connString))

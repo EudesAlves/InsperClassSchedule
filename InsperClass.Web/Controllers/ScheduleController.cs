@@ -1,5 +1,6 @@
 ﻿using InsperClass.Domain.Entity;
 using InsperClass.Domain.Interface;
+using InsperClass.Domain.Interface.Service;
 using InsperClass.Domain.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -14,18 +15,20 @@ namespace InsperClass.Web.Controllers
         IScheduleRepository _scheduleRepository;
         ICourseRepository _courseRepository;
         IClassRepository _classRepository;
+        IScheduleService _scheduleService;
 
-        public ScheduleController(IScheduleRepository scheduleRepository, ICourseRepository courseRepository, IClassRepository classRepository)
+        public ScheduleController(IScheduleRepository scheduleRepository, ICourseRepository courseRepository, IClassRepository classRepository, IScheduleService scheduleService)
         {
             _scheduleRepository = scheduleRepository;
             _courseRepository = courseRepository;
             _classRepository = classRepository;
+            _scheduleService = scheduleService;
         }
         
         // GET: ScheduleController
         public ActionResult Index()
         {
-            var schedules = _scheduleRepository.GetViewModel();
+            var schedules = _scheduleService.Get();
             return View(schedules);
         }
 

@@ -9,7 +9,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using InsperClass.Domain.Interface;
+using InsperClass.Domain.Interface.Service;
 using InsperClass.Data.Repository;
+using InsperClass.Application.Service;
+using InsperClass.Application.AutoMapper;
+using AutoMapper;
 
 namespace InsperClass.Web
 {
@@ -30,6 +34,8 @@ namespace InsperClass.Web
             services.AddTransient<IScheduleRepository, ScheduleRepository>();
             services.AddTransient<ICourseRepository, CourseRepository>();
             services.AddTransient<IClassRepository, ClassRepository>();
+            services.AddTransient<IScheduleService, ScheduleService>();
+            services.AddAutoMapper(typeof(ScheduleProfile));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
